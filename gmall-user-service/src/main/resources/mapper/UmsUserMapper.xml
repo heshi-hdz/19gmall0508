@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<!-- com.atguigu.mapper.AccountMapper绑定对应的接口，注意逆向工程记得改包名， -->
+<mapper namespace="com.atguigu.gmall.mapper.UserMapperDao">
+    <select id="selectAllUsers" resultType="com.atguigu.gmall.entity.UmsMember">
+      SELECT * FROM ums_member
+    </select>
+</mapper>
