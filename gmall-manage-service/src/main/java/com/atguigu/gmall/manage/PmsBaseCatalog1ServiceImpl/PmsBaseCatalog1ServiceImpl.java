@@ -9,6 +9,7 @@ import com.atguigu.gmall.entity.PmsProductInfo;
 import com.atguigu.gmall.manage.mapper.PmsBaseCatalog1Mapper;
 import com.atguigu.gmall.manage.mapper.PmsBaseCatalog2Mapper;
 import com.atguigu.gmall.manage.mapper.PmsBaseCatalog3Mapper;
+import com.atguigu.gmall.manage.mapper.PmsProductImageMapper;
 import com.atguigu.gmall.service.CatalogService;
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -23,6 +24,8 @@ public class PmsBaseCatalog1ServiceImpl implements CatalogService {
     PmsBaseCatalog2Mapper pmsBaseCatalog2Mapper;
     @Autowired
     PmsBaseCatalog3Mapper pmsBaseCatalog3Mapper;
+    @Autowired
+    PmsProductImageMapper pmsProductImageMapper;
     @Override
     public List<PmsBaseCatalog1> getCatalog1() {
         List<PmsBaseCatalog1> listPmsBaseCatalog1 = pmsBaseCatalog1Mapper.selectAll();

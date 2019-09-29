@@ -1,5 +1,6 @@
 package com.atguigu.gmall.manage.PmsBaseCatalog1ServiceImpl;
 
+import com.alibaba.dubbo.common.json.JSON;
 import com.alibaba.dubbo.config.annotation.Service;
 import com.atguigu.gmall.entity.PmsBaseAttrInfo;
 import com.atguigu.gmall.entity.PmsBaseAttrValue;
@@ -13,6 +14,8 @@ import java.util.List;
 @Service
 public class AttrServiceImpl implements AttrService {
 
+
+
     @Autowired
     PmsBaseAttrInfoMapper pmsBaseAttrInfoMapper;
 
@@ -24,6 +27,13 @@ public class AttrServiceImpl implements AttrService {
         PmsBaseAttrInfo pmsBaseAttrInfo = new PmsBaseAttrInfo();
         pmsBaseAttrInfo.setCatalog3Id(catalog3Id);
         List<PmsBaseAttrInfo> pmsBaseAttrInfos = pmsBaseAttrInfoMapper.select(pmsBaseAttrInfo);
+        for (PmsBaseAttrInfo baseAttrInfo : pmsBaseAttrInfos) {
+            PmsBaseAttrValue pmsBaseAttrValue = new PmsBaseAttrValue();
+            pmsBaseAttrValue.setAttrId(baseAttrInfo.getId());
+            List<PmsBaseAttrValue> pmsBaseAttrValues = pmsBaseAttrValueMapper.select(pmsBaseAttrValue);
+            baseAttrInfo.setAttrValueList(pmsBaseAttrValues);
+
+        }
         return pmsBaseAttrInfos;
     }
 
@@ -63,5 +73,12 @@ public class AttrServiceImpl implements AttrService {
          pmsBaseAttrValueMapper.insertSelective(baseAttrValue);
         }
 
+    }
+
+    @Override
+    public List<PmsBaseAttrInfo> getAttrValueLists(String join) {
+
+        List<PmsBaseAttrInfo> pmsBaseAttrInfos = pmsBaseAttrInfoMapper.selectAttrListByProduct(join);
+        return pmsBaseAttrInfos;
     }
 }

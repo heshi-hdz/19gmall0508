@@ -3,13 +3,11 @@ package com.atguigu.gmall.manage.manageController;
 import com.alibaba.dubbo.config.annotation.Reference;
 import com.atguigu.gmall.entity.PmsBaseSaleAttr;
 import com.atguigu.gmall.entity.PmsProductInfo;
-import com.atguigu.gmall.entity.PmsProductSaleAttr;
+import com.atguigu.gmall.manage.util.MyFileUploadUtil;
 import com.atguigu.gmall.service.SpuService;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
 import java.util.List;
 
@@ -18,6 +16,15 @@ import java.util.List;
 public class SpuController {
     @Reference
     SpuService spuService;
+
+    //连图  fileUpload
+    @RequestMapping("fileUpload")
+    @ResponseBody
+    public String fileUpload(@RequestParam("file")MultipartFile multipartFile) {
+        String url= MyFileUploadUtil.uploadImage(multipartFile);
+        return url;
+    }
+
 
     //    spuList?catalog3Id=6
     @RequestMapping("spuList")

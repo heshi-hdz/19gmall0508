@@ -13,4 +13,7 @@ public interface AttrService {
     List<PmsBaseAttrValue> getAttrValueList(String attrId);
 
     void updatPmsBaseAttrInfo(PmsBaseAttrInfo pmsBaseAttrInfo);
+
+
+    List<PmsBaseAttrInfo> getAttrValueLists(String join);
 }
